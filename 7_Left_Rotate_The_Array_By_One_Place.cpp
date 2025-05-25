@@ -1,4 +1,4 @@
-//todo - Remove duplicates in place from the given array.
+//todo - Left rotate the array by one place 
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -19,19 +19,18 @@ void printArray(int arr[], int n) {
     cout << endl;
 }
 
-//* Pass by pointer  
-void removeDuplicatesInPlace(int* arr, int n) {
+//* Pass by pointer 
+void leftRotateTheArrayByOnePlace(int* arr, int n) {
     if(n == 1) return;
-    int i = 0, j = 1;
-    while(j < n) {
-        if(arr[i] == arr[j]) {
-            j++;
+    int temp = arr[0];
+    for(int i = 0 ; i < n ; i++) {
+        if(i != (n - 1)) {
+            arr[i] = arr[i + 1];
         } else {
-            i++;
-            swap(arr[i], arr[j]); 
-            j++;
+            arr[i] = temp;
         }
     }
+    return;
 }
 
 //? Time Complexity = O(n)
@@ -45,6 +44,6 @@ int main() {
         cin >> arr[i];
     }
     printArray(arr, n);
-    removeDuplicatesInPlace((int*)arr, n);
+    leftRotateTheArrayByOnePlace((int*)arr, n);
     printArray(arr, n);
 }

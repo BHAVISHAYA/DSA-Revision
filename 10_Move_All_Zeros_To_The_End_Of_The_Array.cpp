@@ -1,4 +1,4 @@
-//todo - Remove duplicates in place from the given array.
+//todo - Move all zeros to the end of the array.
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -19,32 +19,35 @@ void printArray(int arr[], int n) {
     cout << endl;
 }
 
-//* Pass by pointer  
-void removeDuplicatesInPlace(int* arr, int n) {
+void moveZerosToEndOfArray(int* arr, int n) {
     if(n == 1) return;
-    int i = 0, j = 1;
+    int i = 0, j = 0;
+    bool flag = false;
     while(j < n) {
-        if(arr[i] == arr[j]) {
-            j++;
-        } else {
-            i++;
-            swap(arr[i], arr[j]); 
-            j++;
+        if(arr[j] == 0 && flag == false) {
+            i = j;
+            flag = true;
         }
+        else if(arr[j] != 0) {
+            swap(arr[i], arr[j]);
+            i++;
+        }
+        j++;
     }
+    return;
 }
 
 //? Time Complexity = O(n)
 //? Space Complexity = O(1)
 
 int main() {
-    int n;
+    int n;    
     cin >> n;
     int arr[n];
     for(int i = 0 ; i < n ; i++) {
         cin >> arr[i];
     }
     printArray(arr, n);
-    removeDuplicatesInPlace((int*)arr, n);
+    moveZerosToEndOfArray((int*)arr, n);
     printArray(arr, n);
 }

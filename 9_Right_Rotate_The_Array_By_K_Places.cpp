@@ -1,4 +1,4 @@
-//todo - Remove duplicates in place from the given array.
+//todo - Right rotate the given array by K places.
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -19,22 +19,14 @@ void printArray(int arr[], int n) {
     cout << endl;
 }
 
-//* Pass by pointer  
-void removeDuplicatesInPlace(int* arr, int n) {
-    if(n == 1) return;
-    int i = 0, j = 1;
-    while(j < n) {
-        if(arr[i] == arr[j]) {
-            j++;
-        } else {
-            i++;
-            swap(arr[i], arr[j]); 
-            j++;
-        }
-    }
+void rightRotateAnArrayByKPlaces(int* arr, int n, int k) {
+    reverse(arr, arr + (n - k));
+    reverse(arr + (n - k), arr + n);
+    reverse(arr, arr + n);
+    return;
 }
 
-//? Time Complexity = O(n)
+//? Time Complexity = O(2n)
 //? Space Complexity = O(1)
 
 int main() {
@@ -44,7 +36,10 @@ int main() {
     for(int i = 0 ; i < n ; i++) {
         cin >> arr[i];
     }
+    int k;
+    cin >> k;
+    k = k % n;
     printArray(arr, n);
-    removeDuplicatesInPlace((int*)arr, n);
+    rightRotateAnArrayByKPlaces((int*)arr, n, k);
     printArray(arr, n);
 }

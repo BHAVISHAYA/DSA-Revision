@@ -12,6 +12,9 @@ string isSorted(int arr[], int n) {
     }
     return "true";
 }
+
+//? Time Complexity = O(n)
+//? Space Complexity = O(1)
  
 int main() {
     int n;
